@@ -1,9 +1,9 @@
-<?php 
-    require_once "./User.php";
+<?php
+require_once "./User.php";
 
-    $users = User::all();
+$users = User::all();
 
-    var_dump($users);
+// var_dump($users);
 ?>
 
 <!doctype html>
@@ -24,28 +24,34 @@
     <div class="container">
         <h1>User List</h1>
         <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Password</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Nguyễn Huy Nguyên</td>
-                        <td>nguyen@gmail.com</td>
-                        <td>
-                            <a href="" class="btn btn-info">Show</a>
-                            <a href="" class="btn btn-warning">Edit</a>
-                            <button class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <?php if (count($users) > 0) { ?>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($users as $user) { ?>
+                            <tr>
+                                <th scope="row"><?= $user['id']?></th>
+                                <td><?= $user['name']?></td>
+                                <td><?= $user['email']?></td>
+                                <td>
+                                    <a href="" class="btn btn-info">Show</a>
+                                    <a href="" class="btn btn-warning">Edit</a>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            <?php } else { ?>
+                <h2>No data.</h2>
+            <?php } ?>
         </div>
     </div>
 
